@@ -1,0 +1,28 @@
+<div class="Sing-in">
+  <div class="container">
+    <div class="form">
+      <form [formGroup]="appForm" (ngSubmit)="onSingIn()">
+        <div class="form-control">
+          <div class="form-control-input">
+            <label for="user-imail">Your Email</label>
+            <span [ngStyle]="{background: appForm.get('user-email').valid && appForm.get('user-email').touched ? 'green' : 'red'}"></span>
+          </div>
+          <input type="text" name="user-email" id="user-email" formControlName="user-email">
+        </div>
+
+        <div class="form-control">
+          <div class="form-control-input">
+            <label for="user-password">Your Password</label>
+            <span [ngStyle]="{background: appForm.get('user-password').valid && appForm.get('user-password').touched ? 'green' : 'red'}"></span>
+          </div>
+          <input type="password" name="user-password" id="user-password" formControlName="user-password">
+        </div>
+
+        <div class="btn-blok">
+          <button type="submit" class="btn btn-sing-in" [disabled]="!appForm.valid">Sing In</button>
+          <a routerLink="/sing-up">to Sing Up</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

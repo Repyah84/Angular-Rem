@@ -1,0 +1,10 @@
+<header class="header">
+  <div class="container">
+    <div class="nav-bar">
+      <a [routerLink]="['/posts']">Posts</a>
+      <a [routerLink]="['/create-post']">Create Post</a>
+      <a [routerLink]="['/user']">User</a>
+      <a (click)="onLogout($event)">Logout</a>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,37 @@
+.post{
+  background: #F4A460;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #696969;
+
+  .a{
+      flex-grow: 1;
+      outline: none;
+      color: darkgreen;
+  }
+  
+}
+
+.post-date{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #000000;;
+}
+
+.btn-delite{
+  min-width: 91px;
+}
+
+span{
+  display: block;
+  font-size: 40px;
+  text-align: center;
+}
+
+.btn-delite{
+  background: #696969;
+  color: #ffffff;
+  padding: 10px;
+  margin-left: auto;
+}
