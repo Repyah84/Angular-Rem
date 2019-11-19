@@ -8,7 +8,7 @@ export interface Post {
   id?: string;
   foods?: InitProduct[];
   allCalories?: number;
-  date: Date;
+  date: string;
 }
 
 @Injectable({providedIn: 'root'})

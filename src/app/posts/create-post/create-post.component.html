@@ -1,1 +1,62 @@
-<p>create-post works!</p>
+<div class="creat-post">
+  <div class="container">
+    <div class="searche">
+      <input #inNput class="input-search" type="text" (input)="onSearch($event.target.value)">
+      <div class="imege-searche"></div>
+    </div>
+
+    <div class="search-container" *ngIf="itemsSearch.length > 0">
+      <div class="search-food" *ngFor="let food of itemsSearch" (click)="addFood(food.foodName)">
+        <div>
+          <img class="img" [src]="food.imege">
+        </div>
+        <div class="food-name">
+          <p>{{ food.foodName }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="shou-foods" *ngIf="showFoods.length > 0">
+      <div class="shou-food" *ngFor="let inFood of showFoods; let index = index">
+        <div>
+          <img class="img" [src]="inFood.imege">
+        </div>
+        <div class="food-name">
+          <p>{{ inFood.foodName }}</p>
+        </div>
+        <div class="btn-block">
+          <button class="btn btn-samm btn-minus" [disabled]="inFood.amount === 1" (click)="onMinus(index)">-</button>
+          <span> {{ inFood.amount }} </span>
+          <button class="btn btn-samm btn-plas" (click)="onPlas(index)">+</button>
+        </div>
+        <div class="calories">
+          <p>{{ inFood.calories }} calories</p>
+        </div>
+        <button class="btn btn-delite-item" (click)="onDeliteItem(index)">x</button>
+      </div>
+      <div class="allCalories">
+        <p> All Calories | {{ allCalories }}</p>
+      </div>
+    </div>
+
+    <form class="form" [formGroup]="appForm" (ngSubmit)="onCreatePost()">
+      <div class="form-control">
+        <div>
+          <label for="title">Title</label>
+        </div>
+        <input type="title" id="title" name="title" formControlName="title">
+      </div>
+
+      <div class="form-control">
+        <div>
+          <label for="comment">Comment</label>
+        </div>
+        <textarea rows="4" type="text" id="comment" name="comment" formControlName="comment"></textarea>
+      </div>
+
+      <div class="form-btn">
+        <button [disabled]="!appForm.valid" class="btn btn-post" type="submit">Сreate Post</button>
+      </div>
+    </form>
+  </div>
+</div>

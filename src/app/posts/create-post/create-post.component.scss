@@ -1,0 +1,130 @@
+
+.searche{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-search{
+  padding: 5px;
+}
+.search-container{
+  overflow: auto;
+  max-height: 200px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.search-food{
+  display: flex;
+  border: 1px solid darkslategray;
+  margin: 5px 0;
+  cursor: pointer;
+
+  &:hover{
+      border-color: blue;
+  }
+}
+
+
+.shou-foods{
+  max-width: 600px;
+  margin: 0 auto;
+
+  .shou-food{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid darkslategray;
+  }
+
+}
+
+.imege-searche{
+  display: flex;
+  align-items: center;
+  transform: rotate(45deg);
+
+  &::before{
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #808080;
+    border-radius: 50%;
+  }
+
+  &::after{
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 3px;
+    background: #808080;
+  }
+}
+
+.allCalories{
+  margin-top: 20px;
+}
+
+.img{
+  display: block;
+  max-width: 50px;
+}
+
+.btn-samm{
+  font-size: 30px;
+  background: transparent;
+}
+.btn-minus{
+  padding-bottom: 7px;
+}
+
+
+.btn-delite-item{
+  padding: 0 10px;
+  background: #000000;
+  color: cornsilk;
+  max-height: 30px;
+}
+
+.food-name,
+.btn-block,
+.calories{
+  display: flex;
+  align-items: center;
+}
+
+.calories{
+  margin-left: 10px;
+}
+
+.form{
+  max-width: 600px;
+  margin: 0 auto;
+
+  .form-control{
+    padding: 20px 0;
+  }
+
+  span{
+    margin-left: 10px;
+    color: red;
+  }
+
+  input,textarea{
+    width: 100%;
+    padding: 5px;
+  }
+
+  .form-btn{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn{
+    background: #F4A460;
+    padding: 10px 30px;
+  }
+}
