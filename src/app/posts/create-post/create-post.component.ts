@@ -13,11 +13,8 @@ import { Post } from '../post/post.servise';
 export class CreatePostComponent implements OnInit {
 
   allCalories;
-
   appForm: FormGroup;
-
   itemsSearch: InitProduct[];
-
   showFoods: InitProduct[];
 
   @ViewChild('inNput', {static: false}) input: ElementRef;
@@ -78,8 +75,9 @@ export class CreatePostComponent implements OnInit {
   }
 
   onMinus(index: number) {
-    if (this.showFoods[index].amount === 1) { return; }
-
+    if (this.showFoods[index].amount === 1) {
+       return;
+    }
     const amount = this.showFoods[index].amount;
     const calories = this.showFoods[index].calories / amount;
     this.showFoods[index].calories = +(this.showFoods[index].calories - calories).toFixed(2);

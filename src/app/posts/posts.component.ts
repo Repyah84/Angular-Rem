@@ -12,26 +12,24 @@ import { PostsServise } from './posts.srvise';
 })
 export class PostsComponent implements OnInit, OnDestroy {
 
-  authServUnsub: Subscription;
-  unSubInterval: Subscription;
   posts: Post[];
-  items;
+  authServUnsub: Subscription;
 
   constructor(
     private postsServ: PostsServise,
   ) {
-    this.posts = [];
+    this.posts = this.postsServ.posts || [];
   }
 
   ngOnInit() {
-    this.posts = this.postsServ.posts;
+    // this.posts = this.postsServ.posts;
     this.authServUnsub = this.postsServ.getPosts()
-      .subscribe({
-        next: v => {
-          console.log('ITEMS_LIST', v);
-          this.posts = v;
-        },
-      });
+    .subscribe({
+      next: v => {
+        console.log('ITEMS_LIST', v);
+        this.postsServ.posts = v;
+      },
+    });
   }
 
   onOpenPost() {

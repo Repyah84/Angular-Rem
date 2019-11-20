@@ -19,8 +19,6 @@ export class InitProduct {
 @Injectable({ providedIn: 'root' })
 export class CreatePostServise {
 
-  userId;
-
   itemRef: AngularFireList<any>;
   items: Observable<any>;
 
@@ -29,7 +27,6 @@ export class CreatePostServise {
     private http: HttpClient,
     private db: AngularFireDatabase
   ) {
-    this.userId = this.authServ.userId;
   }
 
   searcheItem(value: string) {
@@ -97,9 +94,12 @@ export class CreatePostServise {
   }
 
   async createPost(post: Post) {
-    this.itemRef = this.db.list(`posts/${this.userId}`);
+    this.itemRef = this.db.list(`posts/${this.authServ.userId}`);
     console.log('SEND_POST', post);
     await this.itemRef.push(post);
   }
 
 }
+
+
+

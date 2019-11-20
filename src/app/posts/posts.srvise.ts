@@ -19,7 +19,6 @@ export class PostsServise {
     private authServ: AuthServise,
     private db: AngularFireDatabase,
     ) {
-
     this.posts = [];
   }
 

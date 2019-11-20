@@ -20,9 +20,6 @@ export class AuthServise {
     });
   }
 
-  // createItems(item) {
-  //   this.itemsRef.push(item);
-  // }
 }
 
 
