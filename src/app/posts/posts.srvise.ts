@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 
 import { Post } from './post/post.servise';
@@ -10,8 +10,7 @@ import { AuthServise } from '../authentication/auth.servise';
 
 @Injectable({providedIn: 'root'})
 export class PostsServise {
-  posts: Post [];
-
+  SubInPosts = new Subject<Post[]>();
   itemsRef: AngularFireList<any>;
   items: Observable<any>;
 
@@ -19,7 +18,6 @@ export class PostsServise {
     private authServ: AuthServise,
     private db: AngularFireDatabase,
     ) {
-    this.posts = [];
   }
 
   getPosts() {

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { Post } from './post/post.servise';
 import { PostsServise } from './posts.srvise';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts',
@@ -11,29 +12,32 @@ import { PostsServise } from './posts.srvise';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit, OnDestroy {
-
+  showLoad;
   posts: Post[];
   authServUnsub: Subscription;
 
   constructor(
     private postsServ: PostsServise,
+    private router: Router
   ) {
-    this.posts = this.postsServ.posts || [];
+    this.posts = [];
+    this.showLoad = true;
   }
 
   ngOnInit() {
-    // this.posts = this.postsServ.posts;
     this.authServUnsub = this.postsServ.getPosts()
     .subscribe({
-      next: v => {
-        console.log('ITEMS_LIST', v);
-        this.postsServ.posts = v;
+      next: responsePosts => {
+        console.log('ITEMS_LIST', responsePosts);
+        this.posts = responsePosts;
+        this.showLoad = false;
       },
     });
   }
 
   onOpenPost() {
-    // this.authServ.createItems(this.posts);
+    this.postsServ.SubInPosts.next(this.posts);
+    this.router.navigate(['/post']);
   }
 
   onDelitePOst() {

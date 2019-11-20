@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/sing-in', pathMatch: 'full'},
   {path: 'header', component: HeaderComponent},
   {path: 'posts', component: PostsComponent},
-  {path: 'post/:id', component: PostComponent},
+  {path: 'post', component: PostComponent},
   {path: 'create-post', component: CreatePostComponent},
   {path: 'user', component: UserComponent},
   {path: 'sing-in', component: SingInComponent},
