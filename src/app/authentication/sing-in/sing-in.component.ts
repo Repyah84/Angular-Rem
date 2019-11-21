@@ -16,7 +16,7 @@ export class SingInComponent implements OnInit {
   constructor(
     private singInServ: SingInServise,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.appForm = new FormGroup({

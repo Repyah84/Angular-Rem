@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PostsServise } from '../posts.srvise';
-import { Subscription } from 'rxjs';
-import { Post } from './post.servise';
 import { Router } from '@angular/router';
+
+import { Subscription } from 'rxjs';
+
+import { Post } from './post.servise';
+import { PostsServise } from '../posts.srvise';
 
 @Component({
   selector: 'app-post',
@@ -17,13 +19,12 @@ export class PostComponent implements OnInit, OnDestroy {
   constructor(
     private postsServ: PostsServise,
     private router: Router
-    ) {}
+  ) { }
 
   ngOnInit() {
     this.unSubPosts = this.postsServ.SubInPosts.subscribe(responsePost => {
       this.post = responsePost;
     });
-
   }
 
   onDelitePost(key: string) {

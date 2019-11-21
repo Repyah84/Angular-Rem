@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
 import { Post } from './post/post.servise';
 import { PostsServise } from './posts.srvise';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts',
