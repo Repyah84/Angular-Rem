@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
-import { map, take, tap, retry } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { Post } from './post/post.servise';
-import { AuthServise } from '../authentication/auth.servise';
+import { UserServise } from '../user/user.servise';
 
 
 @Injectable({ providedIn: 'root' })
+
 export class PostsServise {
 
   itemsRef: AngularFireList<any>;
@@ -16,19 +16,14 @@ export class PostsServise {
   SubInPosts = new BehaviorSubject<any>(null);
 
   constructor(
-    private authServ: AuthServise,
+    private userServ: UserServise,
     private db: AngularFireDatabase,
-  ) {
-  }
+  ) { }
 
   getPosts() {
-    console.log('UsrId', this.authServ.userId);
-    this.itemsRef = this.db.list(`posts/${this.authServ.userId}`);
+    this.itemsRef = this.db.list(`posts/${this.userServ.userId}`);
     this.items = this.itemsRef.snapshotChanges();
     return this.items.pipe(
-      tap(n => {
-        console.log('NNNNNNN', n);
-      }),
       map(chenges => chenges.map(c => (
         { key: c.payload.key, ...c.payload.val() }))
       )
@@ -36,7 +31,7 @@ export class PostsServise {
   }
 
   async delitePOst(key: string) {
-    this.itemsRef = this.db.list(`posts/${this.authServ.userId}`);
+    this.itemsRef = this.db.list(`posts/${this.userServ.userId}`);
     await this.itemsRef.remove(key);
   }
 

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { SingUpServise } from './sing-up.servise';
+import { UserServise, User } from '../../user/user.servise';
 
 @Component({
   selector: 'app-sing-up',
@@ -15,6 +16,7 @@ export class SingUpComponent implements OnInit {
 
   constructor(
     private singUpServ: SingUpServise,
+    private userServ: UserServise,
     private router: Router
   ) { }
 
@@ -30,12 +32,18 @@ export class SingUpComponent implements OnInit {
   }
 
   async onSingUp() {
-    console.log('THIS_FORM', this.appForm);
     const email = this.appForm.value['user-email'];
     const password = this.appForm.value['user-password'];
     const userInfo = await this.singUpServ.singUp(email, password);
     if (userInfo) {
-      console.log('USER_INFO', userInfo);
+      const user: User = {
+        userEmail: userInfo.email,
+        userName: this.appForm.value['user-name'],
+        userAge: this.appForm.value['user-age'],
+        userHeight: this.appForm.value['user-height'],
+        userWeight: this.appForm.value['user-weight'],
+      };
+      await this.userServ.initUserInfo(user);
       this.router.navigate(['/posts']);
     }
   }

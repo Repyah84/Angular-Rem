@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
 
-import { AuthServise } from '../authentication/auth.servise';
+import { UserServise } from '../user/user.servise';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +11,12 @@ import { AuthServise } from '../authentication/auth.servise';
 export class HeaderComponent {
   constructor(
     private router: Router,
-    private authAerv: AuthServise
+    private userServ: UserServise
     ) {}
 
   async onLogout(event: Event) {
     event.preventDefault();
-    await this.authAerv.signOut();
+    await this.userServ.signOut();
     this.router.navigate(['/sing-in']);
   }
 }

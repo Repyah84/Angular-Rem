@@ -1,1 +1,61 @@
-<p>user works!</p>
+<div class="prof">
+  <div class="container">
+    <div class="photo">
+      <img
+        [src]="avatar"
+        alt="">
+    </div>
+    <form class="form" [formGroup]="appForm" (ngSubmit)="initUserInfo()">
+      <div class="form-control">
+        <div>
+          <label for="user-name">Name: {{ userInfo?.userName }}</label>
+          <!-- <span>Same Text</span> -->
+        </div>
+        <input *ngIf="btnValue !== 'Change'" type="text" id="user-name" name="user-name" formControlName="user-name">
+      </div>
+
+      <div class="form-control">
+        <div>
+          <label for="user-age">Age: {{ userInfo?.userAge }}</label>
+          <!-- <span>Same Text</span> -->
+        </div>
+        <input *ngIf="btnValue !== 'Change'" type="number" id="user-age" name="user-age" formControlName="user-age">
+      </div>
+
+      <div class="form-control">
+        <div>
+          <label for="user-height">Height: {{ userInfo?.userHeight }}</label>
+          <!-- <span>Same Text</span> -->
+        </div>
+        <div class="form-select">
+          <input class="form-height" *ngIf="btnValue !== 'Change'" type="number" id="user-height" name="user-height"
+            formControlName="user-weight">
+          <select *ngIf="btnValue !== 'Change'" class="select" name="select-height" formControlName="select-height">
+            <option value="inches">inches</option>
+            <option value="centimeters">centimeters</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-control">
+        <div>
+          <label for="user-weight">Weight: {{ userInfo?.userWeight  }}</label>
+          <!-- <span>Same Text</span> -->
+        </div>
+        <div class="form-select">
+          <input class="form-weight" *ngIf="btnValue !== 'Change'" type="number" id="user-weight" name="user-weight"
+            formControlName="user-weight">
+          <select *ngIf="btnValue !== 'Change'" class="select" name="select-weight" formControlName="select-weight">
+            <option value="pounds">pounds</option>
+            <option value="kilograms">kilograms</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-btn">
+        <button type="submit" class="btn btn-save">{{ btnValue }}</button>
+        <button type="button" class="btn" routerLink="/posts">Back to post</button>
+      </div>
+    </form>
+  </div>
+</div>

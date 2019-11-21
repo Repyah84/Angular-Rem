@@ -6,7 +6,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
 
 import { Post } from '../post/post.servise';
-import { AuthServise } from '../../authentication/auth.servise';
+import { UserServise } from 'src/app/user/user.servise';
 
 export class InitProduct {
   foodName: string;
@@ -23,7 +23,7 @@ export class CreatePostServise {
   // items: Observable<any>;
 
   constructor(
-    private authServ: AuthServise,
+    private userServ: UserServise,
     private http: HttpClient,
     private db: AngularFireDatabase
   ) {
@@ -94,7 +94,7 @@ export class CreatePostServise {
   }
 
   async createPost(post: Post) {
-    this.itemRef = this.db.list(`posts/${this.authServ.userId}`);
+    this.itemRef = this.db.list(`posts/${this.userServ.userId}`);
     console.log('SEND_POST', post);
     await this.itemRef.push(post);
   }
