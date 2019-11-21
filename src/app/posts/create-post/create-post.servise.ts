@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
+// import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Post } from '../post/post.servise';
-import { Observable } from 'rxjs';
-import { AuthServise } from 'src/app/authentication/auth.servise';
+import { AuthServise } from '../../authentication/auth.servise';
 
 export class InitProduct {
   foodName: string;
@@ -20,7 +20,7 @@ export class InitProduct {
 export class CreatePostServise {
 
   itemRef: AngularFireList<any>;
-  items: Observable<any>;
+  // items: Observable<any>;
 
   constructor(
     private authServ: AuthServise,

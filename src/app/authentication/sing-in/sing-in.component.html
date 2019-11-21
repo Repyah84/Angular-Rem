@@ -5,7 +5,8 @@
         <div class="form-control">
           <div class="form-control-input">
             <label for="user-imail">Your Email</label>
-            <span [ngStyle]="{background: appForm.get('user-email').valid && appForm.get('user-email').touched ? 'green' : 'red'}"></span>
+            <span
+              [ngStyle]="{background: appForm.get('user-email').valid && appForm.get('user-email').touched ? 'green' : 'red'}"></span>
           </div>
           <input type="text" name="user-email" id="user-email" formControlName="user-email">
         </div>
@@ -13,7 +14,8 @@
         <div class="form-control">
           <div class="form-control-input">
             <label for="user-password">Your Password</label>
-            <span [ngStyle]="{background: appForm.get('user-password').valid && appForm.get('user-password').touched ? 'green' : 'red'}"></span>
+            <span
+              [ngStyle]="{background: appForm.get('user-password').valid && appForm.get('user-password').touched ? 'green' : 'red'}"></span>
           </div>
           <input type="password" name="user-password" id="user-password" formControlName="user-password">
         </div>

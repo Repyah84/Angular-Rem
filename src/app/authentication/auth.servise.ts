@@ -20,6 +20,10 @@ export class AuthServise {
     });
   }
 
+  async signOut() {
+    await this.afAuth.auth.signOut();
+  }
+
 }
 
 

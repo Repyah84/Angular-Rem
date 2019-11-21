@@ -17,7 +17,7 @@ export class CreatePostComponent implements OnInit {
   itemsSearch: InitProduct[];
   showFoods: InitProduct[];
 
-  @ViewChild('inNput', {static: false}) input: ElementRef;
+  @ViewChild('inNput', { static: false }) input: ElementRef;
 
   constructor(
     private router: Router,
@@ -76,7 +76,7 @@ export class CreatePostComponent implements OnInit {
 
   onMinus(index: number) {
     if (this.showFoods[index].amount === 1) {
-       return;
+      return;
     }
     const amount = this.showFoods[index].amount;
     const calories = this.showFoods[index].calories / amount;

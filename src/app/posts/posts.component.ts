@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit, OnDestroy {
+
   showLoad;
   posts: Post[];
   authServUnsub: Subscription;
@@ -26,28 +27,28 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authServUnsub = this.postsServ.getPosts()
-    .subscribe({
-      next: responsePosts => {
-        console.log('ITEMS_LIST', responsePosts);
-        this.posts = responsePosts;
-        this.showLoad = false;
-      },
-    });
+      .subscribe({
+        next: responsePosts => {
+          console.log('ITEMS_LIST', responsePosts);
+          this.posts = responsePosts;
+          this.showLoad = false;
+        },
+      });
   }
 
-  onOpenPost() {
-    this.postsServ.SubInPosts.next(this.posts);
+  onOpenPost(key: string) {
+    this.postsServ.SubInPosts.next(this.posts.find(post => post.key === key));
     this.router.navigate(['/post']);
   }
 
-  onDelitePOst() {
-
+  onDelitePOst(key: string) {
+    this.postsServ.delitePOst(key);
+    this.posts.filter(post => post.key !== key);
   }
 
   ngOnDestroy() {
-    if (!this.authServUnsub) {
-      return;
+    if (this.authServUnsub) {
+      this.authServUnsub.unsubscribe();
     }
-    this.authServUnsub.unsubscribe();
   }
 }

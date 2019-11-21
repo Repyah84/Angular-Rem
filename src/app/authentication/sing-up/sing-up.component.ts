@@ -10,12 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./sing-up.component.scss']
 })
 export class SingUpComponent implements OnInit {
+
   appForm: FormGroup;
 
   constructor(
     private singUpServ: SingUpServise,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.appForm = new FormGroup({
@@ -29,10 +30,13 @@ export class SingUpComponent implements OnInit {
   }
 
   async onSingUp() {
+    console.log('THIS_FORM', this.appForm);
     const email = this.appForm.value['user-email'];
-    const password = `${this.appForm.valid['user-password']}`;
+    const password = this.appForm.value['user-password'];
     const userInfo = await this.singUpServ.singUp(email, password);
-    console.log('USER_INFO', userInfo);
-    this.router.navigate(['/posts']);
+    if (userInfo) {
+      console.log('USER_INFO', userInfo);
+      this.router.navigate(['/posts']);
+    }
   }
 }

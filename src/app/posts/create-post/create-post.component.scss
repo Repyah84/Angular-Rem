@@ -1,36 +1,36 @@
-.searche{
+.searche {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.input-search{
+.input-search {
   padding: 5px;
 }
-.search-container{
+
+.search-container {
   overflow: auto;
   max-height: 200px;
   max-width: 300px;
   margin: 0 auto;
 }
 
-.search-food{
+.search-food {
   display: flex;
   border: 1px solid darkslategray;
   margin: 5px 0;
   cursor: pointer;
 
-  &:hover{
-      border-color: blue;
+  &:hover {
+    border-color: blue;
   }
 }
 
-
-.shou-foods{
+.shou-foods {
   max-width: 600px;
   margin: 0 auto;
 
-  .shou-food{
+  .shou-food {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
@@ -39,12 +39,12 @@
 
 }
 
-.imege-searche{
+.imege-searche {
   display: flex;
   align-items: center;
   transform: rotate(45deg);
 
-  &::before{
+  &::before {
     content: '';
     display: inline-block;
     width: 14px;
@@ -53,7 +53,7 @@
     border-radius: 50%;
   }
 
-  &::after{
+  &::after {
     content: '';
     display: inline-block;
     width: 10px;
@@ -62,25 +62,25 @@
   }
 }
 
-.allCalories{
+.allCalories {
   margin-top: 20px;
 }
 
-.img{
+.img {
   display: block;
   max-width: 50px;
 }
 
-.btn-samm{
+.btn-samm {
   font-size: 30px;
   background: transparent;
 }
-.btn-minus{
+
+.btn-minus {
   padding-bottom: 7px;
 }
 
-
-.btn-delite-item{
+.btn-delite-item {
   padding: 0 10px;
   background: #000000;
   color: cornsilk;
@@ -89,40 +89,41 @@
 
 .food-name,
 .btn-block,
-.calories{
+.calories {
   display: flex;
   align-items: center;
 }
 
-.calories{
+.calories {
   margin-left: 10px;
 }
 
-.form{
+.form {
   max-width: 600px;
   margin: 0 auto;
 
-  .form-control{
+  .form-control {
     padding: 20px 0;
   }
 
-  span{
+  span {
     margin-left: 10px;
     color: red;
   }
 
-  input,textarea{
+  input,
+  textarea {
     width: 100%;
     padding: 5px;
   }
 
-  .form-btn{
+  .form-btn {
     padding: 20px;
     display: flex;
     justify-content: center;
   }
 
-  .btn{
+  .btn {
     background: #F4A460;
     padding: 10px 30px;
   }

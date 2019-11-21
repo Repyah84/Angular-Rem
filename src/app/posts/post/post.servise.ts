@@ -5,7 +5,7 @@ import { InitProduct } from '../create-post/create-post.servise';
 export interface Post {
   title: string;
   comment: string;
-  id?: string;
+  key?: string;
   foods?: InitProduct[];
   allCalories?: number;
   date: string;

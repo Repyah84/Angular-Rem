@@ -6,7 +6,7 @@
       <div class="post-date">
         <h3>{{ item.date | date: 'EEEE/ MMMM d/ y/ h:mm a' }}</h3>
         <div class="post-btn">
-          <button class="btn btn-delite" (click)="onDelitePOst(item.id)">Delite Post</button>
+          <button class="btn btn-delite" (click)="onDelitePOst(item.key)">Delite Post</button>
         </div>
       </div>
       <div class="post-link">
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div>
-          <button class="btn" (click)="onOpenPost()">Open Post</button>
+          <button class="btn" (click)="onOpenPost(item.key)">Open Post</button>
         </div>
       </div>
     </div>

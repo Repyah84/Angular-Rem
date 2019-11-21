@@ -1,17 +1,17 @@
 <div class="post">
   <div class="container">
-    <!-- <h3>{{ post.title }}</h3> -->
-    <!-- <div class="foods" *ngFor="let food of post.foods; let index = undex">
+    <h3>{{ post.title }}</h3>
+    <div class="foods" *ngFor="let food of post.foods">
       <h3>{{ food.foodName }}</h3>
       <div class="food">
         <img class="img" [src]="food.imege">
         <p>Amount | {{ food.amount }}</p>
         <p>Calories | {{ food.calories }}</p>
       </div>
-    </div> -->
+    </div>
     <div class="btn-wraper">
       <button class="btn btn-back" routerLink="/posts">Back to Posts</button>
-      <button class="btn btn-delite" (click)="onDelitePost(post.id)">Delite Post</button>
+      <button class="btn btn-delite" (click)="onDelitePost(post.key)">Delite Post</button>
     </div>
   </div>
 </div>

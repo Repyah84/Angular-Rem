@@ -26,11 +26,14 @@ export class SingInComponent implements OnInit {
   }
 
   async onSingIn() {
+    console.log('THIS_FORM', this.appForm);
     const email = this.appForm.value['user-email'];
-    const password = `${this.appForm.valid['user-password']}`;
+    const password = this.appForm.value['user-password'];
     const userInfo = await this.singInServ.singIn(email, password);
-    console.log('USER_INFO', userInfo);
-    this.router.navigate(['/posts']);
+    if (userInfo) {
+      console.log('USER_INFO', userInfo);
+      this.router.navigate(['/posts']);
+    }
   }
 
 }
