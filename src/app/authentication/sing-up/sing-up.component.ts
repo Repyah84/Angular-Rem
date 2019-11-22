@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { SingUpServise } from './sing-up.servise';
 import { UserServise, User } from '../../user/user.servise';
+import { AuthServise } from '../auth.servise';
 
 @Component({
   selector: 'app-sing-up',
@@ -15,7 +16,7 @@ export class SingUpComponent implements OnInit {
   appForm: FormGroup;
 
   constructor(
-    private singUpServ: SingUpServise,
+    private authServ: AuthServise,
     private userServ: UserServise,
     private router: Router
   ) { }
@@ -34,7 +35,7 @@ export class SingUpComponent implements OnInit {
   async onSingUp() {
     const email = this.appForm.value['user-email'];
     const password = this.appForm.value['user-password'];
-    const userInfo = await this.singUpServ.singUp(email, password);
+    const userInfo = await this.authServ.singUp(email, password);
     if (userInfo) {
       const user: User = {
         userEmail: userInfo.email,
@@ -45,6 +46,7 @@ export class SingUpComponent implements OnInit {
       };
       await this.userServ.initUserInfo(user);
       this.router.navigate(['/posts']);
+      this.appForm.reset();
     }
   }
 }

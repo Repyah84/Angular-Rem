@@ -52,8 +52,8 @@ export class UserServise {
     );
   }
 
-  async initUserInfo(user: User) {
-    const userInfoRef = this.db.list(`users/${this.userId}`);
+  async initUserInfo(user: User, id: string = this.userId) {
+    const userInfoRef = this.db.list(`users/${id}`);
     const userInfo = await userInfoRef.push(user);
     return userInfo;
   }

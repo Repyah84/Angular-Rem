@@ -17,7 +17,7 @@
             <span
               [ngStyle]="{background: appForm.get('user-password').valid && appForm.get('user-password').touched ? 'green' : 'red'}"></span>
           </div>
-          <input type="password" name="user-password" id="user-password" formControlName="user-password">
+          <input type="password" name="user-password" id="user-password" formControlName="user-password" autocomplete="cc-csc">
         </div>
 
         <div class="btn-blok">
@@ -25,6 +25,9 @@
           <a routerLink="/sing-up">to Sing Up</a>
         </div>
       </form>
+      <div>
+        <app-social-auth [valueBtn]="'in'"></app-social-auth>
+      </div>
     </div>
   </div>
 </div>

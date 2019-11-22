@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { SingInServise } from './sing-in.servise';
+import { AuthServise } from '../auth.servise';
 
 @Component({
   selector: 'app-sing-in',
@@ -14,7 +15,7 @@ export class SingInComponent implements OnInit {
   appForm: FormGroup;
 
   constructor(
-    private singInServ: SingInServise,
+    private authServ: AuthServise,
     private router: Router
   ) { }
 
@@ -29,10 +30,11 @@ export class SingInComponent implements OnInit {
     console.log('THIS_FORM', this.appForm);
     const email = this.appForm.value['user-email'];
     const password = this.appForm.value['user-password'];
-    const userInfo = await this.singInServ.singIn(email, password);
+    const userInfo = await this.authServ.singIn(email, password);
     if (userInfo) {
       console.log('USER_INFO', userInfo);
       this.router.navigate(['/posts']);
+      this.appForm.reset();
     }
   }
 

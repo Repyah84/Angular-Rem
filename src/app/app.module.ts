@@ -18,6 +18,7 @@ import { PostComponent } from './posts/post/post.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { UserComponent } from './user/user.component';
 import { environment } from '../environments/environment';
+import { SocialAuthComponent } from './authentication/social-auth/social-auth.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { environment } from '../environments/environment';
     PostComponent,
     CreatePostComponent,
     UserComponent,
+    SocialAuthComponent,
   ],
   imports: [
     BrowserModule,
