@@ -1,9 +1,9 @@
-.form{
+.form {
   max-width: 600px;
   margin: 0 auto;
 }
 
-.form-control{
+.form-control {
   min-height: 50px;
   display: flex;
   justify-content: space-between;
@@ -11,38 +11,33 @@
   padding: 10px 0;
   border-bottom: 1px solid rebeccapurple;
 
-  span{
-      margin-left: 20px;
-      color: red;
+  span {
+    margin-left: 20px;
+    color: red;
   }
 }
 
-.form-select{
+.form-select {
   display: flex;
 }
 
-.select{
+.select {
   min-width: 100px;
   margin-left: 20px;
 }
 
-.form-height,
-.form-weight{
-  max-width: 85px;
-}
-
-.form-btn{
+.form-btn {
   padding: 50px 0;
   display: flex;
   justify-content: space-around;
 }
 
-.btn{
+.btn {
   padding: 10px;
   min-width: 70px;
 }
 
-img{
+img {
   max-width: 200px;
   margin: 0 auto;
   display: block;

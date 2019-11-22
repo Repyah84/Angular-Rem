@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
-// import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Post } from '../post/post.servise';
@@ -20,7 +19,6 @@ export class InitProduct {
 export class CreatePostServise {
 
   itemRef: AngularFireList<any>;
-  // items: Observable<any>;
 
   constructor(
     private userServ: UserServise,
@@ -43,13 +41,12 @@ export class CreatePostServise {
         const foodsArrey: InitProduct[] = [];
         for (const key in responseFoods) {
           if (key === 'common') {
-            // tslint:disable-next-line:no-shadowed-variable
-            responseFoods[key].map(responseFoods => {
+            responseFoods[key].map(foods => {
               foodsArrey.push(
                 {
-                  foodName: responseFoods.food_name,
-                  imege: responseFoods.photo.thumb,
-                  id: responseFoods.tag_id
+                  foodName: foods.food_name,
+                  imege: foods.photo.thumb,
+                  id: foods.tag_id
                 }
               );
             });
@@ -74,19 +71,18 @@ export class CreatePostServise {
       }
     ).pipe(
       map(rsponseFood => {
-        // tslint:disable-next-line:no-shadowed-variable
-        let food: InitProduct;
+        let initFood: InitProduct;
         for (const key in rsponseFood) {
           if (key === 'foods') {
             rsponseFood[key].map(responseFood => {
-              food = {
+              initFood = {
                 foodName: responseFood.food_name,
                 imege: responseFood.photo.thumb,
                 calories: +responseFood.nf_calories,
                 amount: 1
               };
             });
-            return food;
+            return initFood;
           }
         }
       })
@@ -95,7 +91,6 @@ export class CreatePostServise {
 
   async createPost(post: Post) {
     this.itemRef = this.db.list(`posts/${this.userServ.userId}`);
-    console.log('SEND_POST', post);
     await this.itemRef.push(post);
   }
 

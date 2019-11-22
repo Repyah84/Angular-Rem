@@ -11,8 +11,8 @@ import { Post } from '../post/post.servise';
   styleUrls: ['./create-post.component.scss']
 })
 export class CreatePostComponent implements OnInit {
-
   allCalories;
+  loadinSpiner;
   appForm: FormGroup;
   itemsSearch: InitProduct[];
   showFoods: InitProduct[];
@@ -23,6 +23,7 @@ export class CreatePostComponent implements OnInit {
     private router: Router,
     private cpServ: CreatePostServise
   ) {
+    this.loadinSpiner = false;
     this.allCalories = 0;
     this.itemsSearch = [];
     this.showFoods = [];
@@ -40,9 +41,11 @@ export class CreatePostComponent implements OnInit {
       this.itemsSearch.length = 0;
       return;
     }
+    this.loadinSpiner = true;
     this.cpServ.searcheItem(value)
       .subscribe(item => {
         this.itemsSearch = item;
+        this.loadinSpiner = false;
       });
   }
 
@@ -51,17 +54,17 @@ export class CreatePostComponent implements OnInit {
     this.inAllCalories();
   }
 
-  addFood(fodName: string) {
+  onAddFood(fodName: string) {
     this.cpServ.getItem(fodName)
       .subscribe(response => {
         this.itemsSearch.length = 0;
-        this.input.nativeElement.value = '';
+        this.input.nativeElement.value = null;
         this.showFoods.push(response);
         this.inAllCalories();
       });
   }
 
-  onCreatePost() {
+  async onCreatePost() {
     const post: Post = {
       title: this.appForm.value.title,
       comment: this.appForm.value.comment,
@@ -69,7 +72,7 @@ export class CreatePostComponent implements OnInit {
       allCalories: this.allCalories,
       date: new Date().toISOString()
     };
-    this.cpServ.createPost(post);
+    await this.cpServ.createPost(post);
     this.appForm.reset();
     this.router.navigate(['/posts']);
   }
@@ -96,8 +99,7 @@ export class CreatePostComponent implements OnInit {
   inAllCalories() {
     this.allCalories = 0;
     this.showFoods.forEach(item => {
-      // tslint:disable-next-line:no-unused-expression
-      +(this.allCalories += item.calories).toFixed(2);
+      this.allCalories = +(this.allCalories + item.calories).toFixed(2);
     });
   }
 

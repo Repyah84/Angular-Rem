@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .input-search {
@@ -13,12 +14,17 @@
   max-height: 200px;
   max-width: 300px;
   margin: 0 auto;
+  position: absolute;
+  bottom: -202px;
+  background: #ffffff;
 }
 
 .search-food {
+  min-width: 300px;
   display: flex;
   border: 1px solid darkslategray;
   margin: 5px 0;
+  padding: 5px;
   cursor: pointer;
 
   &:hover {
@@ -60,6 +66,12 @@
     height: 3px;
     background: #808080;
   }
+}
+
+.loadSpiner{
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .allCalories {

@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { environment } from '../../environments/environment';
 import { UserServise, User } from './user.servise';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
 
   avatar;
   btnValue;
   userInfo: User;
   appForm: FormGroup;
+  unSubUserInfo: Subscription;
 
   constructor(private userServ: UserServise) {
     this.btnValue = 'Change';
@@ -22,7 +24,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userServ.getUserInfo().subscribe({
+    this.unSubUserInfo = this.userServ.getUserInfo().subscribe({
       next: responseUser => {
         this.userInfo = responseUser;
         console.log('UserUNFORESPONSE', this.userInfo);
@@ -48,6 +50,12 @@ export class UserComponent implements OnInit {
       };
       await this.userServ.updatingUserInfo(userInfoUp);
       this.btnValue = 'Change';
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.unSubUserInfo) {
+      this.unSubUserInfo.unsubscribe();
     }
   }
 

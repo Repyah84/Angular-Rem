@@ -39,15 +39,15 @@ export class UserServise {
     this.itemRef$ = this.db.list(`users/${this.userId}`);
     this.items$ = this.itemRef$.snapshotChanges();
     return this.items$.pipe(
-      tap(n => {
-        console.log('USER INFO RESPONSE', n);
-      }),
-      map(chenges => chenges.map(c => (
-        { key: c.payload.key, ...c.payload.val() }))
-      ),
-      tap(value => {
-        this.userKey = value.key;
-        console.log('USER_KEYYYYYY', this.userKey);
+      map(responseUserinfo => (
+        {
+          key: responseUserinfo[0].payload.key,
+          ...responseUserinfo[0].payload.val()
+        }
+      )),
+      tap(elem => {
+        this.userKey = elem.key;
+        console.log('USER_KEYYYYYYYY', this.userKey);
       })
     );
   }

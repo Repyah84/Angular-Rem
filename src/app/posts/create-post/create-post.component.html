@@ -3,15 +3,16 @@
     <div class="searche">
       <input #inNput class="input-search" type="text" (input)="onSearch($event.target.value)">
       <div class="imege-searche"></div>
-    </div>
-
-    <div class="search-container" *ngIf="itemsSearch.length > 0">
-      <div class="search-food" *ngFor="let food of itemsSearch" (click)="addFood(food.foodName)">
-        <div>
-          <img class="img" [src]="food.imege">
-        </div>
-        <div class="food-name">
-          <p>{{ food.foodName }}</p>
+      <span class="loadSpiner" *ngIf="loadinSpiner">Search...</span>
+      
+      <div class="search-container" *ngIf="itemsSearch.length > 0">
+        <div class="search-food" *ngFor="let food of itemsSearch" (click)="onAddFood(food.foodName)">
+          <div>
+            <img class="img" [src]="food.imege">
+          </div>
+          <div class="food-name">
+            <p>{{ food.foodName }}</p>
+          </div>
         </div>
       </div>
     </div>

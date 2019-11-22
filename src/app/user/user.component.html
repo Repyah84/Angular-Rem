@@ -1,9 +1,7 @@
 <div class="prof">
   <div class="container">
     <div class="photo">
-      <img
-        [src]="avatar"
-        alt="">
+      <img [src]="avatar" alt="">
     </div>
     <form class="form" [formGroup]="appForm" (ngSubmit)="initUserInfo()">
       <div class="form-control">
@@ -29,11 +27,11 @@
         </div>
         <div class="form-select">
           <input class="form-height" *ngIf="btnValue !== 'Change'" type="number" id="user-height" name="user-height"
-            formControlName="user-weight">
-          <select *ngIf="btnValue !== 'Change'" class="select" name="select-height" formControlName="select-height">
+            formControlName="user-height">
+          <!-- <select *ngIf="btnValue !== 'Change'" class="select" name="select-height" formControlName="select-height">
             <option value="inches">inches</option>
             <option value="centimeters">centimeters</option>
-          </select>
+          </select> -->
         </div>
       </div>
 
@@ -45,10 +43,10 @@
         <div class="form-select">
           <input class="form-weight" *ngIf="btnValue !== 'Change'" type="number" id="user-weight" name="user-weight"
             formControlName="user-weight">
-          <select *ngIf="btnValue !== 'Change'" class="select" name="select-weight" formControlName="select-weight">
+          <!-- <select *ngIf="btnValue !== 'Change'" class="select" name="select-weight" formControlName="select-weight">
             <option value="pounds">pounds</option>
             <option value="kilograms">kilograms</option>
-          </select>
+          </select> -->
         </div>
       </div>
 
