@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { SingUpServise } from './sing-up.servise';
 import { UserServise, User } from '../../user/user.servise';
 import { AuthServise } from '../auth.servise';
 
@@ -27,8 +26,9 @@ export class SingUpComponent implements OnInit {
       'user-password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
       'user-name': new FormControl(null),
       'user-age': new FormControl(null),
+      'user-units': new FormControl('metric'),
       'user-height': new FormControl(null),
-      'user-weight': new FormControl(null)
+      'user-weight': new FormControl(null),
     });
   }
 
@@ -41,12 +41,11 @@ export class SingUpComponent implements OnInit {
         userEmail: userInfo.email,
         userName: this.appForm.value['user-name'],
         userAge: this.appForm.value['user-age'],
-        userHeight: this.appForm.value['user-height'],
-        userWeight: this.appForm.value['user-weight'],
+        userHeight: `${this.appForm.value['user-height']}  ${this.appForm.value['user-units'] === 'metric' ? 'cm' : 'ft'}`,
+        userWeight: `${this.appForm.value['user-weight']}  ${this.appForm.value['user-units'] === 'metric' ? 'kg' : 'lb'}`,
       };
       await this.userServ.initUserInfo(user);
       this.router.navigate(['/posts']);
-      this.appForm.reset();
     }
   }
 }

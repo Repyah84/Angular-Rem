@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, take } from 'rxjs/operators';
 
 export interface User {
   userEmail?: string;
@@ -13,12 +13,11 @@ export interface User {
   userWeight?: string;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class UserServise {
 
   userId;
   userKey;
-  user$: Observable<any>;
   items$: Observable<any>;
   itemRef$: AngularFireList<any>;
 
@@ -26,17 +25,20 @@ export class UserServise {
     private afAuth: AngularFireAuth,
     private db: AngularFireDatabase
   ) {
+    this.userKey = null;
     this.afAuth.authState.subscribe(user => {
       if (user) {
         console.log('USER_IUSERRRRRR', user);
         this.userId = user.uid;
+      } else {
+        this.userId = null;
       }
       console.log('USER_ID', this.userId);
     });
   }
 
-  getUserInfo() {
-    this.itemRef$ = this.db.list(`users/${this.userId}`);
+  getUserInfo(userId: string = this.userId) {
+    this.itemRef$ = this.db.list(`users/${userId}`);
     this.items$ = this.itemRef$.snapshotChanges();
     return this.items$.pipe(
       map(responseUserinfo => (
@@ -48,8 +50,16 @@ export class UserServise {
       tap(elem => {
         this.userKey = elem.key;
         console.log('USER_KEYYYYYYYY', this.userKey);
-      })
+      }),
     );
+  }
+
+  async checkUserInfo(userId: string) {
+    const userInfo = await this.db.list(`users/${userId}`)
+    .valueChanges()
+    .pipe(take(1))
+    .toPromise();
+    return userInfo;
   }
 
   async initUserInfo(user: User, id: string = this.userId) {

@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { takeWhile, skipWhile,  take } from 'rxjs/operators';
 
 import { AuthServise } from '../auth.servise';
 import { UserServise, User } from '../../user/user.servise';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-social-auth',
@@ -26,10 +28,13 @@ export class SocialAuthComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
+
   async authWithSocial(userInfo) {
-    if (this.valueBtn === 'up') {
+    const crUserInfo = await this.userServ.checkUserInfo(userInfo.uid);
+    if (this.valueBtn === 'up' && !crUserInfo.length) {
       const user: User = {
         userEmail: userInfo.email,
         userName: this.valueForm.value['user-name'],
@@ -39,21 +44,26 @@ export class SocialAuthComponent implements OnInit {
       };
       await this.userServ.initUserInfo(user, userInfo.uid);
     }
+    if (this.valueBtn === 'in' && !crUserInfo.length) {
+      const user: User = {
+        userEmail: userInfo.email,
+      };
+      await this.userServ.initUserInfo(user, userInfo.uid);
+    }
     this.router.navigate(['/posts']);
-    this.valueForm.reset();
   }
 
   async onAuthGoogle() {
     this.btnDisabled = true;
     const userInfo = await this.authServ.googleAuth();
-    this.authWithSocial(userInfo);
+    await this.authWithSocial(userInfo);
     this.btnDisabled = false;
   }
 
   async onAuthFasebook() {
     this.btnDisabled = true;
     const userInfo = await this.authServ.fasebookAuth();
-    this.authWithSocial(userInfo);
+    await this.authWithSocial(userInfo);
     this.btnDisabled = false;
   }
 

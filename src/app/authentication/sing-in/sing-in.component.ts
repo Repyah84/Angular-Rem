@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { SingInServise } from './sing-in.servise';
 import { AuthServise } from '../auth.servise';
 
 @Component({
@@ -34,7 +33,6 @@ export class SingInComponent implements OnInit {
     if (userInfo) {
       console.log('USER_INFO', userInfo);
       this.router.navigate(['/posts']);
-      this.appForm.reset();
     }
   }
 

@@ -9,6 +9,11 @@ span {
 
 input {
   width: 100%;
+  margin-top: 5px;
+}
+
+label {
+  color: antiquewhite;
 }
 
 .form {
@@ -27,7 +32,7 @@ input {
   }
 
   .btn-blok {
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -35,5 +40,7 @@ input {
 
   .btn-sing-in {
     border-radius: 5px;
+    max-width: 200px;
+    width: 100%;
   }
 }

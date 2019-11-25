@@ -5,7 +5,7 @@
         <div class="form-control">
           <div class="form-control-input">
             <label for="user-imail">Your Email</label>
-            <span
+            <span class="auth"
               [ngStyle]="{background: appForm.get('user-email').valid && appForm.get('user-email').touched ? 'green' : 'red'}"></span>
           </div>
           <input type="text" name="user-email" id="user-email" formControlName="user-email">
@@ -14,7 +14,7 @@
         <div class="form-control">
           <div class="form-control-input">
             <label for="user-password">Your Password</label>
-            <span
+            <span class="auth"
               [ngStyle]="{background: appForm.get('user-password').valid && appForm.get('user-password').touched ? 'green' : 'red'}"></span>
           </div>
           <input type="password" name="user-password" id="user-password" formControlName="user-password" autocomplete="cc-csc">
@@ -27,29 +27,45 @@
           <input type="text" name="user-name" id="user-name" formControlName="user-name">
         </div>
 
+        
+        <div class="radio-buttons">
+          <div class="form-radio-button">
+            <label for="imperial">Imperial</label>
+            <input type="radio" id="imperial" name="user-units" value="imperial" formControlName="user-units">
+          </div>
+          
+          <div class="form-radio-button">
+            <label for="metric">Metric</label>
+            <input type="radio" id="metric" name="user-units" value="metric" formControlName="user-units">
+          </div>
+        </div>
+        
         <div class="form-control">
-          <div>
+          <div class="units">
             <label for="user-age">Your Age</label>
+            <input class="units-input" type="text" name="user-age" id="user-age" formControlName="user-age">
+            <span class="units-span"></span>
           </div>
-          <input type="text" name="user-age" id="user-age" formControlName="user-age">
         </div>
 
         <div class="form-control">
-          <div>
-            <label for="user-height">your Height</label>
+          <div class="units">
+            <label for="user-height">Your Height</label>
+            <input class="units-input" type="text" name="user-height" id="user-height" formControlName="user-height">
+            <span class="units-span">{{ appForm.value['user-units'] === 'metric' ? 'cm' : 'ft'}}</span>
           </div>
-          <input type="text" name="user-height" id="user-height" formControlName="user-height">
         </div>
 
         <div class="form-control">
-          <div>
+          <div class="units">
             <label for="user-weight">Your Weight</label>
+            <input class="units-input" type="text" name="user-weight" id="user-weight" formControlName="user-weight">
+            <span class="units-span">{{ appForm.value['user-units'] === 'metric' ? 'kg' : 'lb'}}</span>
           </div>
-          <input type="text" name="user-weight" id="user-weight" formControlName="user-weight">
         </div>
 
         <div class="btn-blok">
-          <button type="submit" class="btn btn-sing-in" [disabled]="!appForm.valid">Sing Up</button>
+          <button type="submit" class="btn btn-sing-up" [disabled]="!appForm.valid">Sing Up</button>
           <a routerLink="/sing-in">to Sing In</a>
         </div>
       </form>

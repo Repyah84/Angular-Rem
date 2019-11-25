@@ -73,7 +73,6 @@ export class CreatePostComponent implements OnInit {
       date: new Date().toISOString()
     };
     await this.cpServ.createPost(post);
-    this.appForm.reset();
     this.router.navigate(['/posts']);
   }
 

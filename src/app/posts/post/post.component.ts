@@ -22,13 +22,19 @@ export class PostComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.unSubPosts = this.postsServ.SubInPosts.subscribe(responsePost => {
-      this.post = responsePost;
-    });
+    this.unSubPosts = this.postsServ.SubInPosts
+      .subscribe({
+        next: responsePost => {
+          if (!responsePost) {
+            this.router.navigate(['/posts']);
+          }
+          this.post = responsePost;
+        },
+      });
   }
 
   onDelitePost(key: string) {
-    this.postsServ.delitePOst(key);
+    this.postsServ.delitePost(key);
     this.router.navigate(['/posts']);
   }
 

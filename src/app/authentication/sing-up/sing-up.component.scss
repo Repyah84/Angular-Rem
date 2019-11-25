@@ -1,4 +1,4 @@
-span {
+.auth {
   display: block;
   width: 10px;
   height: 10px;
@@ -7,8 +7,50 @@ span {
   margin: 0 5px;
 }
 
-input {
+.radio-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+
+  .form-radio-button {
+    display: flex;
+    margin-right: 20px;
+  }
+
+  input{
+    width: auto;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}
+
+.units {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  label {
+    min-width: 82px;
+  }
+
+  &-span {
+    min-width: 50px;
+    color: antiquewhite;
+  }
+
+  &-input {
+    margin: 0 10px 0 10px;
+    // max-width: 250px;
+  }
+}
+
+ input {
   width: 100%;
+  margin-top: 5px;
+}
+
+label {
+  color: antiquewhite;
 }
 
 .form {
@@ -27,13 +69,15 @@ input {
   }
 
   .btn-blok {
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
   }
 
-  .btn-sing-in {
+  .btn-sing-up {
     border-radius: 5px;
+    max-width: 200px;
+    width: 100%;
   }
 }

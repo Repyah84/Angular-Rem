@@ -4,9 +4,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,10 +39,11 @@ import { SocialAuthComponent } from './authentication/social-auth/social-auth.co
     ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.fierbase),
-    AngularFirestoreModule,
+    AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFireAuthGuardModule,
+    AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
