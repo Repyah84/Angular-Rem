@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
@@ -20,6 +20,7 @@ import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { UserComponent } from './user/user.component';
 import { environment } from '../environments/environment';
 import { SocialAuthComponent } from './authentication/social-auth/social-auth.component';
+import { AppErrorService } from './app-error.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,12 @@ import { SocialAuthComponent } from './authentication/social-auth/social-auth.co
     AngularFirestoreModule,
     AngularFireStorageModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: AppErrorService
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

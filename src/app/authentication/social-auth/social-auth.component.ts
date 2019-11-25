@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { takeWhile, skipWhile,  take } from 'rxjs/operators';
-
 import { AuthServise } from '../auth.servise';
 import { UserServise, User } from '../../user/user.servise';
 
@@ -30,7 +28,6 @@ export class SocialAuthComponent implements OnInit {
   ngOnInit() {
 
   }
-
 
   async authWithSocial(userInfo) {
     const crUserInfo = await this.userServ.checkUserInfo(userInfo.uid);
