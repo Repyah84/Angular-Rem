@@ -3,7 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { environment } from '../../environments/environment';
 import { UserServise, User } from './user.servise';
-import { Subscription } from 'rxjs';
+import { Subscription, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -24,12 +25,22 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.unSubUserInfo = this.userServ.getUserInfo().subscribe({
+    this.unSubUserInfo = this.userServ.user$
+    .pipe(
+      switchMap(user => {
+        if (user) {
+          return this.userServ.getUserInfo(user.uid);
+        }
+        return of();
+      })
+    )
+    .subscribe({
       next: responseUser => {
         this.userInfo = responseUser;
         console.log('UserUNFORESPONSE', this.userInfo);
       }
     });
+
     this.appForm = new FormGroup({
       'user-name': new FormControl(null),
       'user-age': new FormControl(null),

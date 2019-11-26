@@ -18,6 +18,7 @@ export class UserServise {
 
   userId;
   userKey;
+  user$: Observable<any>;
   items$: Observable<any>;
   itemRef$: AngularFireList<any>;
 
@@ -25,19 +26,20 @@ export class UserServise {
     private afAuth: AngularFireAuth,
     private db: AngularFireDatabase
   ) {
+    this.userId = null;
     this.userKey = null;
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        console.log('USER_IUSERRRRRR', user);
-        this.userId = user.uid;
-      } else {
-        this.userId = null;
-      }
-      console.log('USER_ID', this.userId);
-    });
+
+    this.user$ = this.afAuth.authState
+      .pipe(
+        tap(user => {
+          if (user) {
+            this.userId = user.uid;
+          }
+        })
+      );
   }
 
-  getUserInfo(userId: string = this.userId) {
+  getUserInfo(userId: string) {
     this.itemRef$ = this.db.list(`users/${userId}`);
     this.items$ = this.itemRef$.snapshotChanges();
     return this.items$.pipe(
@@ -56,21 +58,19 @@ export class UserServise {
 
   async checkUserInfo(userId: string) {
     const userInfo = await this.db.list(`users/${userId}`)
-    .valueChanges()
-    .pipe(take(1))
-    .toPromise();
+      .valueChanges()
+      .pipe(take(1))
+      .toPromise();
     return userInfo;
   }
 
-  async initUserInfo(user: User, id: string = this.userId) {
-    const userInfoRef = this.db.list(`users/${id}`);
-    const userInfo = await userInfoRef.push(user);
-    return userInfo;
+  async initUserInfo(user: User, userId: string) {
+    const userInfoRef = await this.db.list(`users/${userId}`).push(user);
+    return userInfoRef;
   }
 
   async updatingUserInfo(user: User) {
-    const userInfoUp = this.db.list(`users/${this.userId}`);
-    await userInfoUp.update(this.userKey, user);
+    await this.db.list(`users/${this.userId}`).update(this.userKey, user);
   }
 
   async signOut() {

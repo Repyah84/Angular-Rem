@@ -21,6 +21,7 @@ import { UserComponent } from './user/user.component';
 import { environment } from '../environments/environment';
 import { SocialAuthComponent } from './authentication/social-auth/social-auth.component';
 import { AppErrorService } from './app-error.service';
+import { PopUpComponent } from './pop-up/pop-up.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AppErrorService } from './app-error.service';
     CreatePostComponent,
     UserComponent,
     SocialAuthComponent,
+    PopUpComponent,
   ],
   imports: [
     BrowserModule,

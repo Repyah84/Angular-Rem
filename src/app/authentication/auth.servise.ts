@@ -5,25 +5,16 @@ import { auth } from 'firebase/app';
 @Injectable({ providedIn: 'root' })
 export class AuthServise {
 
-  constructor(private afAuth: AngularFireAuth) { }
+
+  constructor(private afAuth: AngularFireAuth) {}
 
   async singIn(email: string, password: string) {
-    let credential;
-    try {
-      credential = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      this.handleError(error);
-    }
+    const credential = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
     return credential.user;
   }
 
   async singUp(email: string, password: string) {
-    let credential;
-    try {
-      credential = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-      this.handleError(error);
-    }
+    const credential = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
     return credential.user;
   }
 
@@ -37,14 +28,14 @@ export class AuthServise {
     return credential.user;
   }
 
-  private handleError(erroRes: any) {
+  handleError(erroRes: any) {
     let errorMessage = 'An unknown error ccured';
     if (!erroRes.code) {
       return errorMessage;
     }
     switch (erroRes.code) {
       case 'auth/invalid-email':
-        errorMessage = 'This email exist olready';
+        errorMessage = 'This email is not correct';
         break;
       case 'auth/user-disabled':
         errorMessage = 'This email has been disabled';

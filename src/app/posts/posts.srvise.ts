@@ -20,8 +20,8 @@ export class PostsServise {
     private db: AngularFireDatabase,
   ) { }
 
-  getPosts() {
-    this.itemsRef = this.db.list(`posts/${this.userServ.userId}`);
+  getPosts(userId) {
+    this.itemsRef = this.db.list(`posts/${userId}`);
     this.items = this.itemsRef.snapshotChanges();
     return this.items.pipe(
       map(chenges => chenges.map(c => (
