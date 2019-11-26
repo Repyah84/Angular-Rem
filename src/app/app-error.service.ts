@@ -1,8 +1,16 @@
-import { ErrorHandler, Injector, Injectable, ComponentFactoryResolver } from '@angular/core';
+import {
+  ErrorHandler,
+  Injector,
+  Injectable,
+  ComponentFactoryResolver,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { PopUpService } from './pop-up/pop-up.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class AppErrorService implements ErrorHandler {
@@ -10,33 +18,20 @@ export class AppErrorService implements ErrorHandler {
   error;
 
   constructor(
-    // private injector: Injector,
-    // private ingectorPopServ: Injector
-    // private popServ: PopUpService
-    // private router: Router,
-    // private popServ: PopUpService
-    // private rsolver: ComponentFactoryResolver
-    ) {
-      this.error = '';
+    private injector: Injector,
+  ) {
+      this.error = 'lutuuuil.u.u';
     }
 
   handleError(error: any) {
-    // const router = this.injector.get(Router);
-    // const popServ = this.injector.get(PopUpService);
+    const router = this.injector.get(Router);
     if (error instanceof HttpErrorResponse) {
-      console.log('ERROR', error);
-      console.log(error.error.message);
-      this.getError(error.error.message);
+      this.error = error.error.message;
     } else {
-      // console.error('an error occurred here broo');
-      // console.log('Something went wrong try please again');
-      this.getError(error);
+      this.error = error;
     }
-  }
-
-  getError(error: string) {
-    this.error = error;
     console.log('HENDEL_ERROR', this.error);
+    router.navigate(['/pop-up']);
   }
 
 }

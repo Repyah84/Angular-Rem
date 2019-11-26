@@ -1,10 +1,8 @@
-<div class="wraper" *ngIf="errorMessage">
+<div class="wraper">
   <div class="pop-up">
-    <h2>Something went wrong try please again</h2>
-    <div (click)="onShowMessage()">
-      <!-- {{ iniiErrorMessage() }} -->
-      Message
-    </div>
+    <h2>Something went wrong, try please again</h2>
+    <div class="chou-error" (click)="onChouMesage()">Chou error message</div>
+    <p >{{ errorMessage }}</p>
     <button class="btn btn-close-pop" (click)="onClosePop()">Close</button>
   </div>
 </div>
