@@ -16,10 +16,11 @@ export class GlobalErrorHandler  implements ErrorHandler {
   constructor(private injector: Injector) {}
 
   handleError(error: any) {
+    let message;
     const errorServece = this.injector.get(ErrorService);
+
     Sentry.captureException(error.originalError || error);
 
-    let message;
     if (error instanceof HttpErrorResponse) {
       message = errorServece.getServerErrorMessage(error);
       errorServece.showError(message);
