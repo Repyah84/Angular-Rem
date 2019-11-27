@@ -9,7 +9,7 @@
           <label for="user-name">Name: {{ userInfo?.userName }}</label>
           <!-- <span>Same Text</span> -->
         </div>
-        <input *ngIf="btnValue !== 'Change'" type="text" id="user-name" name="user-name" formControlName="user-name">
+        <input class="user-nn" *ngIf="btnValue !== 'Change'" type="text" id="user-name" name="user-name" formControlName="user-name">
       </div>
 
       <div class="form-control">
@@ -17,7 +17,7 @@
           <label for="user-age">Age: {{ userInfo?.userAge }}</label>
           <!-- <span>Same Text</span> -->
         </div>
-        <input *ngIf="btnValue !== 'Change'" type="number" id="user-age" name="user-age" formControlName="user-age">
+        <input class="user-nn" *ngIf="btnValue !== 'Change'" type="number" id="user-age" name="user-age" formControlName="user-age">
       </div>
 
       <div class="form-control">
@@ -28,10 +28,10 @@
         <div class="form-select">
           <input class="form-height" *ngIf="btnValue !== 'Change'" type="number" id="user-height" name="user-height"
             formControlName="user-height">
-          <!-- <select *ngIf="btnValue !== 'Change'" class="select" name="select-height" formControlName="select-height">
-            <option value="inches">inches</option>
-            <option value="centimeters">centimeters</option>
-          </select> -->
+          <select *ngIf="btnValue !== 'Change'" class="select" name="select-height" formControlName="select-height">
+            <option value="cm">cm</option>
+            <option value="ft">ft</option>
+          </select>
         </div>
       </div>
 
@@ -43,10 +43,10 @@
         <div class="form-select">
           <input class="form-weight" *ngIf="btnValue !== 'Change'" type="number" id="user-weight" name="user-weight"
             formControlName="user-weight">
-          <!-- <select *ngIf="btnValue !== 'Change'" class="select" name="select-weight" formControlName="select-weight">
-            <option value="pounds">pounds</option>
-            <option value="kilograms">kilograms</option>
-          </select> -->
+          <select *ngIf="btnValue !== 'Change'" class="select" name="select-weight" formControlName="select-weight">
+            <option value="kg">kg</option>
+            <option value="lb">lb</option>
+          </select>
         </div>
       </div>
 

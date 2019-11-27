@@ -65,7 +65,7 @@ export class CreatePostServise {
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // 'x-app-id': '505ea1f5',
+          'x-app-id': '505ea1f5',
           'x-app-key': 'a8654bc1f5d68ed03f8e3ae59cb6aa25',
         })
       }

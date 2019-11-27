@@ -12,7 +12,7 @@ import { AuthServise } from '../auth.servise';
 })
 export class SingUpComponent implements OnInit {
 
-  errorMessage;
+  // errorMessage;
   appForm: FormGroup;
 
   constructor(
@@ -20,7 +20,7 @@ export class SingUpComponent implements OnInit {
     private userServ: UserServise,
     private router: Router
   ) {
-    this.errorMessage = '';
+    // this.errorMessage = '';
   }
 
   ngOnInit() {
@@ -36,23 +36,24 @@ export class SingUpComponent implements OnInit {
   }
 
   async onSingUp() {
-    try {
-      const email = this.appForm.value['user-email'];
-      const password = this.appForm.value['user-password'];
-      const userInfo = await this.authServ.singUp(email, password);
-      if (userInfo) {
-        const user: User = {
-          userEmail: userInfo.email,
-          userName: this.appForm.value['user-name'],
-          userAge: this.appForm.value['user-age'],
-          userHeight: `${this.appForm.value['user-height']}  ${this.appForm.value['user-units'] === 'metric' ? 'cm' : 'ft'}`,
-          userWeight: `${this.appForm.value['user-weight']}  ${this.appForm.value['user-units'] === 'metric' ? 'kg' : 'lb'}`,
-        };
-        await this.userServ.initUserInfo(user, userInfo.uid);
-        this.router.navigate(['/posts']);
-      }
-    } catch (error) {
-      this.errorMessage = this.authServ.handleError(error);
+    const email = this.appForm.value['user-email'];
+    const password = this.appForm.value['user-password'];
+    const userInfo = await this.authServ.singUp(email, password);
+    if (userInfo) {
+      const user: User = {
+        userEmail: userInfo.email,
+        userName: this.appForm.value['user-name'],
+        userAge: this.appForm.value['user-age'],
+        userHeight: `${this.appForm.value['user-height']}  ${this.appForm.value['user-units'] === 'metric' ? 'cm' : 'ft'}`,
+        userWeight: `${this.appForm.value['user-weight']}  ${this.appForm.value['user-units'] === 'metric' ? 'kg' : 'lb'}`,
+      };
+      await this.userServ.initUserInfo(user, userInfo.uid);
+      this.router.navigate(['/posts']);
+    // try {
+    //   }
+    // } catch (error) {
+    //   this.errorMessage = this.authServ.handleError(error);
     }
   }
+
 }

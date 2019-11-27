@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,8 +21,7 @@ import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { UserComponent } from './user/user.component';
 import { environment } from '../environments/environment';
 import { SocialAuthComponent } from './authentication/social-auth/social-auth.component';
-import { AppErrorService } from './app-error.service';
-import { PopUpComponent } from './pop-up/pop-up.component';
+import { GlobalErrorHandler } from './global-error-handler';
 
 @NgModule({
   declarations: [
@@ -34,24 +34,24 @@ import { PopUpComponent } from './pop-up/pop-up.component';
     CreatePostComponent,
     UserComponent,
     SocialAuthComponent,
-    PopUpComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
     AngularFireModule.initializeApp(environment.fierbase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
     AngularFirestoreModule,
-    AngularFireStorageModule,
   ],
   providers: [
     {
       provide: ErrorHandler,
-      useClass: AppErrorService
+      useClass: GlobalErrorHandler
     },
   ],
   bootstrap: [AppComponent]

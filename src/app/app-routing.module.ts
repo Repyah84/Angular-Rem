@@ -8,10 +8,8 @@ import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { SingInComponent } from './authentication/sing-in/sing-in.component';
 import { SingUpComponent } from './authentication/sing-up/sing-up.component';
 import { UserComponent } from './user/user.component';
-import { PopUpComponent } from './pop-up/pop-up.component';
 
 const routes: Routes = [
-  {path: 'pop-up', component: PopUpComponent},
   {path: 'sing-in', component: SingInComponent},
   {path: 'sing-up', component: SingUpComponent},
   {path: '', component: PostsComponent, ...canActivate(redirectUnauthorizedTo(['sing-in']))},

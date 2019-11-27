@@ -17,6 +17,15 @@
   }
 }
 
+.user-nn {
+  min-width: 221px;
+}
+
+.form-height,
+.form-weight {
+ max-width: 100px;
+}
+
 .form-select {
   display: flex;
 }

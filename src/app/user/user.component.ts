@@ -46,6 +46,8 @@ export class UserComponent implements OnInit, OnDestroy {
       'user-age': new FormControl(null),
       'user-height': new FormControl(null),
       'user-weight': new FormControl(null),
+      'select-height': new FormControl('cm'),
+      'select-weight': new FormControl('kg')
     });
   }
 
@@ -56,8 +58,8 @@ export class UserComponent implements OnInit, OnDestroy {
       const userInfoUp: User = {
         userName: this.appForm.value['user-name'],
         userAge: this.appForm.value['user-age'],
-        userHeight: this.appForm.value['user-height'],
-        userWeight: this.appForm.value['user-weight']
+        userHeight: `${this.appForm.value['user-height']} ${this.appForm.value['select-height']}`,
+        userWeight: `${this.appForm.value['user-weight']} ${this.appForm.value['select-weight']}`
       };
       await this.userServ.updatingUserInfo(userInfoUp);
       this.btnValue = 'Change';

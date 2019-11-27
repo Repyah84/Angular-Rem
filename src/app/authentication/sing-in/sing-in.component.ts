@@ -11,14 +11,14 @@ import { AuthServise } from '../auth.servise';
 })
 export class SingInComponent implements OnInit {
 
-  errorMessage;
+  // errorMessage;
   appForm: FormGroup;
 
   constructor(
     private authServ: AuthServise,
     private router: Router
   ) {
-    this.errorMessage = '';
+    // this.errorMessage = '';
   }
 
   ngOnInit() {
