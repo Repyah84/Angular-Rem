@@ -11,15 +11,12 @@ import { AuthServise } from '../auth.servise';
 })
 export class SingInComponent implements OnInit {
 
-  // errorMessage;
   appForm: FormGroup;
 
   constructor(
     private authServ: AuthServise,
     private router: Router
-  ) {
-    // this.errorMessage = '';
-  }
+  ) {}
 
   ngOnInit() {
     this.appForm = new FormGroup({
@@ -29,18 +26,12 @@ export class SingInComponent implements OnInit {
   }
 
   async onSingIn() {
-    console.log('THIS_FORM', this.appForm);
     const email = this.appForm.value['user-email'];
     const password = this.appForm.value['user-password'];
     const userInfo = await this.authServ.singIn(email, password);
     if (userInfo) {
-      console.log('USER_INFO', userInfo);
       this.router.navigate(['/posts']);
     }
-    // try {
-    // } catch (error) {
-    //   this.errorMessage = this.authServ.handleError(error);
-    // }
   }
 
 }

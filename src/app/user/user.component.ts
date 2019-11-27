@@ -37,7 +37,6 @@ export class UserComponent implements OnInit, OnDestroy {
     .subscribe({
       next: responseUser => {
         this.userInfo = responseUser;
-        console.log('UserUNFORESPONSE', this.userInfo);
       }
     });
 

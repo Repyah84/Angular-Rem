@@ -49,10 +49,6 @@ export class SingUpComponent implements OnInit {
       };
       await this.userServ.initUserInfo(user, userInfo.uid);
       this.router.navigate(['/posts']);
-    // try {
-    //   }
-    // } catch (error) {
-    //   this.errorMessage = this.authServ.handleError(error);
     }
   }
 

@@ -28,30 +28,4 @@ export class AuthServise {
     return credential.user;
   }
 
-  // handleError(erroRes: any) {
-  //   let errorMessage = 'An unknown error ccured';
-  //   if (!erroRes.code) {
-  //     return errorMessage;
-  //   }
-  //   switch (erroRes.code) {
-  //     case 'auth/invalid-email':
-  //       errorMessage = 'This email is not correct';
-  //       break;
-  //     case 'auth/user-disabled':
-  //       errorMessage = 'This email has been disabled';
-  //       break;
-  //     case 'auth/user-not-found':
-  //       errorMessage = 'This user not found';
-  //       break;
-  //     case 'auth/wrong-password':
-  //       errorMessage = 'This password is not correct';
-  //       break;
-  //     case 'auth/email-already-in-use':
-  //       errorMessage = 'This email exist olready';
-  //       break;
-  //   }
-  //   console.log('ERRO_MESSAGE', errorMessage);
-  //   return errorMessage;
-  // }
-
 }

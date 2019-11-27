@@ -52,7 +52,7 @@ import { GlobalErrorHandler } from './global-error-handler';
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandler
-    },
+    }
   ],
   bootstrap: [AppComponent]
 })

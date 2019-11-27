@@ -51,7 +51,6 @@ export class UserServise {
       )),
       tap(elem => {
         this.userKey = elem.key;
-        console.log('USER_KEYYYYYYYY', this.userKey);
       }),
     );
   }

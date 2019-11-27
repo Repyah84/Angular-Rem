@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { Post } from '../post/post.servise';
 import { UserServise } from 'src/app/user/user.servise';
+import { environment } from 'src/environments/environment';
 
 export class InitProduct {
   foodName: string;
@@ -29,11 +30,11 @@ export class CreatePostServise {
 
   searcheItem(value: string) {
     return this.http.get(
-      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}`,
+      `${environment.nutritionix.URL}/search/instant?query=${value}`,
       {
         headers: new HttpHeaders({
-          'x-app-id': '505ea1f5',
-          'x-app-key': 'a8654bc1f5d68ed03f8e3ae59cb6aa25',
+          'x-app-id': `${environment.nutritionix.id}`,
+          'x-app-key': `${environment.nutritionix.key}`,
         })
       }
     ).pipe(
@@ -60,13 +61,13 @@ export class CreatePostServise {
   getItem(fodName: string) {
     const food = { query: fodName };
     return this.http.post(
-      `https://trackapi.nutritionix.com/v2/natural/nutrients`,
+      `${environment.nutritionix.URL}/natural/nutrients`,
       food,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'x-app-id': '505ea1f5',
-          'x-app-key': 'a8654bc1f5d68ed03f8e3ae59cb6aa25',
+          'x-app-id': `${environment.nutritionix.id}`,
+          'x-app-key': `${environment.nutritionix.key}`,
         })
       }
     ).pipe(
