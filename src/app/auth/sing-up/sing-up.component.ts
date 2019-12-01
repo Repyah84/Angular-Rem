@@ -12,16 +12,13 @@ import { AuthServise } from '../auth.servise';
 })
 export class SingUpComponent implements OnInit {
 
-  // errorMessage;
   appForm: FormGroup;
 
   constructor(
     private authServ: AuthServise,
     private userServ: UserServise,
     private router: Router
-  ) {
-    // this.errorMessage = '';
-  }
+  ) {}
 
   ngOnInit() {
     this.appForm = new FormGroup({
@@ -33,6 +30,12 @@ export class SingUpComponent implements OnInit {
       'user-height': new FormControl(null),
       'user-weight': new FormControl(null),
     });
+  }
+
+  onToSingIn(e: Event) {
+    e.preventDefault();
+    const bul = true;
+    this.authServ.showAuthElem.next(bul);
   }
 
   async onSingUp() {

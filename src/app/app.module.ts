@@ -13,15 +13,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { SingInComponent } from './authentication/sing-in/sing-in.component';
-import { SingUpComponent } from './authentication/sing-up/sing-up.component';
+import { SingInComponent } from './auth/sing-in/sing-in.component';
+import { SingUpComponent } from './auth/sing-up/sing-up.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './posts/post/post.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { UserComponent } from './user/user.component';
 import { environment } from '../environments/environment';
-import { SocialAuthComponent } from './authentication/social-auth/social-auth.component';
+import { SocialAuthComponent } from './auth/social-auth/social-auth.component';
 import { GlobalErrorHandler } from './global-error-handler';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { GlobalErrorHandler } from './global-error-handler';
     CreatePostComponent,
     UserComponent,
     SocialAuthComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

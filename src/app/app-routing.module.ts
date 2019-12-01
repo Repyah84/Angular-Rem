@@ -5,19 +5,17 @@ import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './posts/post/post.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
-import { SingInComponent } from './authentication/sing-in/sing-in.component';
-import { SingUpComponent } from './authentication/sing-up/sing-up.component';
 import { UserComponent } from './user/user.component';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
-  {path: 'sing-in', component: SingInComponent},
-  {path: 'sing-up', component: SingUpComponent},
-  {path: '', component: PostsComponent, ...canActivate(redirectUnauthorizedTo(['sing-in']))},
-  {path: 'posts', component: PostsComponent, ...canActivate(redirectUnauthorizedTo(['sing-in']))},
-  {path: 'post', component: PostComponent, ...canActivate(redirectUnauthorizedTo(['sing-in']))},
-  {path: 'create-post', component: CreatePostComponent, ...canActivate(redirectUnauthorizedTo(['sing-in']))},
-  {path: 'user', component: UserComponent, ...canActivate(redirectUnauthorizedTo(['sing-in']))},
-  {path: '**', component: PostsComponent, ...canActivate(redirectUnauthorizedTo(['sing-in']))}
+  {path: 'auth', component: AuthComponent},
+  {path: '', component: PostsComponent, ...canActivate(redirectUnauthorizedTo(['auth']))},
+  {path: 'posts', component: PostsComponent, ...canActivate(redirectUnauthorizedTo(['auth']))},
+  {path: 'post', component: PostComponent, ...canActivate(redirectUnauthorizedTo(['auth']))},
+  {path: 'create-post', component: CreatePostComponent, ...canActivate(redirectUnauthorizedTo(['auth']))},
+  {path: 'user', component: UserComponent, ...canActivate(redirectUnauthorizedTo(['auth']))},
+  {path: '**', component: PostsComponent, ...canActivate(redirectUnauthorizedTo(['auth']))}
 ];
 
 @NgModule({

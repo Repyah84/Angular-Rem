@@ -1,4 +1,4 @@
-<div class="sing-in">
+<div class="singIn">
   <div class="container">
     <div class="form">
       <form [formGroup]="appForm" (ngSubmit)="onSingIn()">
@@ -22,7 +22,7 @@
 
         <div class="btn-blok">
           <button type="submit" class="btn btn-sing-in" [disabled]="!appForm.valid">Sing In</button>
-          <a routerLink="/sing-up">to Sing Up</a>
+          <a (click)="onToSingUp($event)">to Sing Up</a>
         </div>
       </form>
       <div>

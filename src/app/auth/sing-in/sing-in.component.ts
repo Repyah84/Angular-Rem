@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthServise } from '../auth.servise';
+import { trigger, transition, animate, style } from '@angular/animations';
 
 @Component({
   selector: 'app-sing-in',
@@ -10,6 +11,8 @@ import { AuthServise } from '../auth.servise';
   styleUrls: ['./sing-in.component.scss']
 })
 export class SingInComponent implements OnInit {
+
+  boolean = true;
 
   appForm: FormGroup;
 
@@ -23,6 +26,12 @@ export class SingInComponent implements OnInit {
       'user-email': new FormControl(null, [Validators.required, Validators.email]),
       'user-password': new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
+  }
+
+  onToSingUp(e: Event) {
+    e.preventDefault();
+    const bul = false;
+    this.authServ.showAuthElem.next(bul);
   }
 
   async onSingIn() {

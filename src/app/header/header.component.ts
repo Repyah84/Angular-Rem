@@ -17,6 +17,6 @@ export class HeaderComponent {
   async onLogout(event: Event) {
     event.preventDefault();
     await this.userServ.signOut();
-    this.router.navigate(['/sing-in']);
+    this.router.navigate(['/auth']);
   }
 }
