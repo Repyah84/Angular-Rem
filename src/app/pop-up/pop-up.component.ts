@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PopUpService } from './pop-up.service';
-import { AppErrorService } from '../app-error.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,10 +11,7 @@ export class PopUpComponent implements OnInit {
   errorMessage;
   chouErrorMesage;
 
-  constructor(
-    private appErrorSev: AppErrorService,
-    private router: Router
-    ) {
+  constructor(private router: Router) {
       this.errorMessage = '';
       this.chouErrorMesage = false;
     }
@@ -24,11 +19,6 @@ export class PopUpComponent implements OnInit {
   ngOnInit() {
 
   }
-
-  onChouMesage() {
-    this.errorMessage = this.appErrorSev.error;
-  }
-
 
   onClosePop() {
      this.errorMessage = '';

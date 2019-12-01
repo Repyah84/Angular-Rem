@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
@@ -12,15 +12,14 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { SingInComponent } from './authentication/sing-in/sing-in.component';
-import { SingUpComponent } from './authentication/sing-up/sing-up.component';
+import { SingInComponent } from './auth/sing-in/sing-in.component';
+import { SingUpComponent } from './auth/sing-up/sing-up.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './posts/post/post.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { UserComponent } from './user/user.component';
 import { environment } from '../environments/environment';
-import { SocialAuthComponent } from './authentication/social-auth/social-auth.component';
-import { AppErrorService } from './app-error.service';
+import { SocialAuthComponent } from './auth/social-auth/social-auth.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
 
 @NgModule({
@@ -49,10 +48,10 @@ import { PopUpComponent } from './pop-up/pop-up.component';
     AngularFireStorageModule,
   ],
   providers: [
-    {
-      provide: ErrorHandler,
-      useClass: AppErrorService
-    },
+    // {
+    //   provide: ErrorHandler,
+    //   useClass: AppErrorService
+    // },
   ],
   bootstrap: [AppComponent]
 })

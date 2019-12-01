@@ -11,15 +11,12 @@ import { AuthServise } from '../auth.servise';
 })
 export class SingInComponent implements OnInit {
 
-  errorMessage;
   appForm: FormGroup;
 
   constructor(
     private authServ: AuthServise,
     private router: Router
-  ) {
-    this.errorMessage = '';
-  }
+  ) { }
 
   ngOnInit() {
     this.appForm = new FormGroup({
@@ -37,10 +34,6 @@ export class SingInComponent implements OnInit {
       console.log('USER_INFO', userInfo);
       this.router.navigate(['/posts']);
     }
-    // try {
-    // } catch (error) {
-    //   this.errorMessage = this.authServ.handleError(error);
-    // }
   }
 
 }

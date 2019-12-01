@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { AppErrorService } from './app-error.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
