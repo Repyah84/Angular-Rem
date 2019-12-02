@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Post } from '../post/post.servise';
-import { UserServise } from 'src/app/user/user.servise';
+import { UserServise } from '../../user/user.servise';
+import { environment } from '../../../environments/environment';
 
 export class InitProduct {
   foodName: string;
@@ -18,8 +20,6 @@ export class InitProduct {
 @Injectable({ providedIn: 'root' })
 export class CreatePostServise {
 
-  itemRef: AngularFireList<any>;
-
   constructor(
     private userServ: UserServise,
     private http: HttpClient,
@@ -27,13 +27,13 @@ export class CreatePostServise {
   ) {
   }
 
-  searcheItem(value: string) {
+  searcheItem(value: string): Observable<any> {
     return this.http.get(
-      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}`,
+      `${environment.nutritionix.URL}/search/instant?query=${value}`,
       {
         headers: new HttpHeaders({
-          'x-app-id': '505ea1f5',
-          'x-app-key': 'a8654bc1f5d68ed03f8e3ae59cb6aa25',
+          'x-app-id': `${environment.nutritionix.id}`,
+          'x-app-key': `${environment.nutritionix.key}`,
         })
       }
     ).pipe(
@@ -57,16 +57,16 @@ export class CreatePostServise {
     );
   }
 
-  getItem(fodName: string) {
+  getItem(fodName: string): Observable<any> {
     const food = { query: fodName };
     return this.http.post(
-      `https://trackapi.nutritionix.com/v2/natural/nutrients`,
+      `${environment.nutritionix.URL}/natural/nutrients`,
       food,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          // 'x-app-id': '505ea1f5',
-          'x-app-key': 'a8654bc1f5d68ed03f8e3ae59cb6aa25',
+          'x-app-id': `${environment.nutritionix.id}`,
+          'x-app-key': `${environment.nutritionix.key}`,
         })
       }
     ).pipe(
@@ -90,8 +90,7 @@ export class CreatePostServise {
   }
 
   async createPost(post: Post) {
-    this.itemRef = this.db.list(`posts/${this.userServ.userId}`);
-    await this.itemRef.push(post);
+    await this.db.list(`posts/${this.userServ.userId}`).push(post);
   }
 
 }

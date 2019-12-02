@@ -1,22 +1,23 @@
-import {
-  ErrorHandler,
-  Injector,
-  Injectable,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 
-@Injectable({providedIn: 'root'})
-export class ErrorService implements ErrorHandler {
+import { Subject } from 'rxjs';
 
-  constructor(private injector: Injector) {}
+@Injectable({ providedIn: 'root' })
+export class ErrorService {
 
-  handleError(error: any) {
-    const router = this.injector.get(Router);
-    if (error instanceof HttpErrorResponse) {
-    } else {
-    }
-    router.navigate(['/pop-up']);
+  inErrorMessage = new Subject<string>();
+
+  getClientErrorMessage(error: Error): string {
+    return  error.message ?
+            error.message :
+            error.toString();
+  }
+
+  getServerErrorMessage(error: HttpErrorResponse): string {
+    return  navigator.onLine ?
+            error.error.message :
+            'No Internet Connection';
   }
 
 }

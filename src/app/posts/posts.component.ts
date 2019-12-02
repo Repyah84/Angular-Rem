@@ -43,9 +43,6 @@ export class PostsComponent implements OnInit, OnDestroy {
           console.log('ITEMS_LIST', responsePosts);
           this.posts = responsePosts;
           this.showLoad = false;
-        },
-        complete: () => {
-          console.log('COMPLITE');
         }
       });
   }

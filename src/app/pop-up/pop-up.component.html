@@ -1,8 +1,6 @@
-<div class="wraper">
   <div class="pop-up">
-    <h2>Something went wrong, try please again</h2>
-    <div class="chou-error" (click)="onChouMesage()">Chou error message</div>
     <p >{{ errorMessage }}</p>
-    <button class="btn btn-close-pop" (click)="onClosePop()">Close</button>
+    <div>
+      <button class="btn btn-close-pop" (click)="inClose.emit()">X</button>
+    </div>
   </div>
-</div>

@@ -1,7 +1,7 @@
 <div class="creat-post">
   <div class="container">
     <div class="searche">
-      <input #inNput class="input-search" type="text" (input)="onSearch($event.target.value)">
+      <input #getInput class="input-search" type="text" (input)="onSearch($event.target.value)">
       <div class="imege-searche"></div>
       <span class="loadSpiner" *ngIf="loadinSpiner">Search...</span>
       
@@ -56,7 +56,7 @@
       </div>
 
       <div class="form-btn">
-        <button [disabled]="!appForm.valid" class="btn btn-post" type="submit">Сreate Post</button>
+        <button [disabled]="!showFoods.length > 0" class="btn btn-post" type="submit">Сreate Post</button>
       </div>
     </form>
   </div>

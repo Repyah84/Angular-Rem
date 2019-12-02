@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { InitProduct, CreatePostServise } from './create-post.servise';
 import { Post } from '../post/post.servise';
+import { AuthServise } from 'src/app/auth/auth.servise';
+import { UserServise } from 'src/app/user/user.servise';
 
 @Component({
   selector: 'app-create-post',
@@ -11,16 +13,18 @@ import { Post } from '../post/post.servise';
   styleUrls: ['./create-post.component.scss']
 })
 export class CreatePostComponent implements OnInit {
+
   allCalories;
   loadinSpiner;
   appForm: FormGroup;
   itemsSearch: InitProduct[];
   showFoods: InitProduct[];
 
-  @ViewChild('inNput', { static: false }) input: ElementRef;
+  @ViewChild('getInput', { static: false }) input: ElementRef;
 
   constructor(
     private router: Router,
+    private userServ: UserServise,
     private cpServ: CreatePostServise
   ) {
     this.loadinSpiner = false;
@@ -30,6 +34,10 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.userServ.userId) {
+      this.router.navigate(['/posts']);
+    }
+
     this.appForm = new FormGroup({
       title: new FormControl(null),
       comment: new FormControl(null)

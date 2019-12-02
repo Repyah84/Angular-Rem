@@ -1,7 +1,4 @@
-<div class="Sing-in">
-  <div *ngIf="errorMessage" class="error">
-    <p (click)="errorMessage = ''">{{ errorMessage }}</p>
-  </div>
+<div class="sing-in">
   <div class="container">
     <div class="form">
       <form [formGroup]="appForm" (ngSubmit)="onSingIn()">

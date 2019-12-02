@@ -1,28 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-pop-up',
   templateUrl: './pop-up.component.html',
   styleUrls: ['./pop-up.component.scss']
 })
-export class PopUpComponent implements OnInit {
+export class PopUpComponent {
 
-  errorMessage;
-  chouErrorMesage;
+  @Input() errorMessage;
+  @Output() inClose = new EventEmitter<any>();
 
-  constructor(private router: Router) {
-      this.errorMessage = '';
-      this.chouErrorMesage = false;
-    }
-
-  ngOnInit() {
-
-  }
-
-  onClosePop() {
-     this.errorMessage = '';
-     this.router.navigate(['posts']);
+  constructor() {
+    this.errorMessage = '';
   }
 
 }

@@ -7,7 +7,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +20,8 @@ import { UserComponent } from './user/user.component';
 import { environment } from '../environments/environment';
 import { SocialAuthComponent } from './auth/social-auth/social-auth.component';
 import { PopUpComponent } from './pop-up/pop-up.component';
+import { GlobalErrorHandler } from './global-error-handler';
+import { PopUpDirective } from './pop-up/pop-up.directive';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PopUpComponent } from './pop-up/pop-up.component';
     UserComponent,
     SocialAuthComponent,
     PopUpComponent,
+    PopUpDirective
   ],
   imports: [
     BrowserModule,
@@ -45,14 +47,14 @@ import { PopUpComponent } from './pop-up/pop-up.component';
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
     AngularFirestoreModule,
-    AngularFireStorageModule,
   ],
   providers: [
-    // {
-    //   provide: ErrorHandler,
-    //   useClass: AppErrorService
-    // },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    },
   ],
+  entryComponents: [PopUpComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

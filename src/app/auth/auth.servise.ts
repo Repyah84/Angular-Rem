@@ -5,25 +5,24 @@ import { auth } from 'firebase/app';
 @Injectable({ providedIn: 'root' })
 export class AuthServise {
 
-
   constructor(private afAuth: AngularFireAuth) {}
 
-  async singIn(email: string, password: string) {
+  async singIn(email: string, password: string): Promise<any> {
     const credential = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
     return credential.user;
   }
 
-  async singUp(email: string, password: string) {
+  async singUp(email: string, password: string): Promise<any> {
     const credential = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
     return credential.user;
   }
 
-  async googleAuth() {
+  async googleAuth(): Promise<any> {
     const credential = await this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
     return credential.user;
   }
 
-  async fasebookAuth() {
+  async fasebookAuth(): Promise<any> {
     const credential = await this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
     return credential.user;
   }

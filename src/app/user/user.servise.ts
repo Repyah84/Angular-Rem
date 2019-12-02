@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 import { Observable } from 'rxjs';
 import { tap, map, take } from 'rxjs/operators';
@@ -19,8 +19,7 @@ export class UserServise {
   userId;
   userKey;
   user$: Observable<any>;
-  items$: Observable<any>;
-  itemRef$: AngularFireList<any>;
+  itemRef$: Observable<any>;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -39,10 +38,10 @@ export class UserServise {
       );
   }
 
-  getUserInfo(userId: string) {
-    this.itemRef$ = this.db.list(`users/${userId}`);
-    this.items$ = this.itemRef$.snapshotChanges();
-    return this.items$.pipe(
+  getUserInfo(userId: string): Observable<any> {
+    return this.itemRef$ = this.db.list(`users/${userId}`)
+    .snapshotChanges()
+    .pipe(
       map(responseUserinfo => (
         {
           key: responseUserinfo[0].payload.key,
@@ -56,7 +55,7 @@ export class UserServise {
     );
   }
 
-  async checkUserInfo(userId: string) {
+  async checkUserInfo(userId: string): Promise<any> {
     const userInfo = await this.db.list(`users/${userId}`)
       .valueChanges()
       .pipe(take(1))
@@ -64,7 +63,7 @@ export class UserServise {
     return userInfo;
   }
 
-  async initUserInfo(user: User, userId: string) {
+  async initUserInfo(user: User, userId: string): Promise<any> {
     const userInfoRef = await this.db.list(`users/${userId}`).push(user);
     return userInfoRef;
   }
