@@ -393,17 +393,5 @@ html, body {
   height: 100%; 
 }
 
-body { 
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif; 
-}
-
-.error {
-  background-color: red;
-  color: white;    
-}
-
-.error button {
-  background-color:orangered;
-  color: white;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,13 +1,14 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ErrorService {
 
+  getIvetn = new Subject<any>();
+
   constructor(
-    public snackBar: MatSnackBar,
     private zone: NgZone
   ) { }
 
@@ -23,10 +24,10 @@ export class ErrorService {
            'No Internet Connection';
   }
 
-  showError(message: string): void {
-    this.zone.run(() => {
-      this.snackBar.open(message, 'X', {panelClass: ['error']});
-    });
-  }
+  // showError(message: string): void {
+  //   this.zone.run(() => {
+  //     this.snackBar.open(message, 'X', {panelClass: ['error']});
+  //   });
+  // }
 
 }

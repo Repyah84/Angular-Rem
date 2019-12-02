@@ -1,3 +1,5 @@
+
+
 import { Injectable, Injector, ErrorHandler } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as Sentry from '@sentry/browser';
@@ -23,10 +25,12 @@ export class GlobalErrorHandler  implements ErrorHandler {
 
     if (error instanceof HttpErrorResponse) {
       message = errorServece.getServerErrorMessage(error);
-      errorServece.showError(message);
+      errorServece.getIvetn.next(message);
+      // errorServece.showError(message);
     } else {
       message = errorServece.getClientErrorMessage(error);
-      errorServece.showError(message);
+      errorServece.getIvetn.next(message);
+      // errorServece.showError(message);
     }
     console.error(error);
   }

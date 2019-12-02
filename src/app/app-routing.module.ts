@@ -5,9 +5,9 @@ import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './posts/post/post.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
+import { UserComponent } from './user/user.component';
 import { SingInComponent } from './authentication/sing-in/sing-in.component';
 import { SingUpComponent } from './authentication/sing-up/sing-up.component';
-import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   {path: 'sing-in', component: SingInComponent},

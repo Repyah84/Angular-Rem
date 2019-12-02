@@ -1,0 +1,26 @@
+.pop-up {
+  max-width: 350px;
+  width: 100%;
+  min-height: 75px;
+  background-color: red;
+  color: white;
+  border-radius: 14px;
+  padding: 10px;
+  position: fixed;
+  top: 80%;
+  right: 50%;
+  margin-right: -175px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+p{
+  margin: 0;
+  padding: 0;
+}
+
+.btn-clouse {
+  background: transparent;
+  color: azure;
+}
