@@ -2,7 +2,7 @@
   <span *ngIf="showLoad">Loading...</span>
   <div *ngIf="!showLoad" class="container">
     <span *ngIf="posts.length === 0">You dont have posts !</span>
-    <div class="post" *ngFor="let item of posts; let index = index">
+    <div class="post" *ngFor="let item of posts">
       <div class="post-date">
         <h3>{{ item.date | date: 'EEEE/ MMMM d/ y/ h:mm a' }}</h3>
         <div class="post-btn">
