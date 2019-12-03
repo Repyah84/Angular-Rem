@@ -30,7 +30,7 @@ export class PostsServise {
     );
   }
 
-  async delitePost(key: string) {
+  async deletePost(key: string) {
     this.itemsRef = this.db.list(`posts/${this.userServ.userId}`);
     await this.itemsRef.remove(key);
   }

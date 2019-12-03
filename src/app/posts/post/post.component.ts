@@ -33,8 +33,8 @@ export class PostComponent implements OnInit, OnDestroy {
       });
   }
 
-  onDelitePost(key: string) {
-    this.postsServ.delitePost(key);
+  onDeletePost(key: string) {
+    this.postsServ.deletePost(key);
     this.router.navigate(['/posts']);
   }
 

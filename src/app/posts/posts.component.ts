@@ -52,8 +52,8 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/post']);
   }
 
-  onDelitePost(key: string) {
-    this.postsServ.delitePost(key);
+  onDeletePost(key: string) {
+    this.postsServ.deletePost(key);
     this.posts.filter(post => post.key !== key);
   }
 
